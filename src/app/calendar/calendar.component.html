@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-around">
+  <div class="calendar-grid">
+    <div class="calendar-nav"><a (click)="decrementMonth()">&lt;</a></div>
+    <div class="calendar-title">{{ calendarTitle }}</div>
+    <div class="calendar-nav calendar-nav__right">
+      <a (click)="incrementMonth()"> &gt;</a>
+    </div>
+    <div class="calendar-dayname">M</div>
+    <div class="calendar-dayname">T</div>
+    <div class="calendar-dayname">W</div>
+    <div class="calendar-dayname">T</div>
+    <div class="calendar-dayname">F</div>
+    <div class="calendar-dayname">S</div>
+    <div class="calendar-dayname">S</div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-around mb-4">
+  <div class="col-8 ms-4">
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-2">
+            <div class="day-success"></div>
+          </div>
+          <span class="col-10">
+            <span *ngIf="partialPossible">All</span> Complete
+          </span>
+        </div>
+      </div>
+      <div class="col-6" *ngIf="partialPossible">
+        <div class="row">
+          <div class="col-2">
+            <div class="day-partial"></div>
+          </div>
+          <span class="col-10"> Some Complete </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

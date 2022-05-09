@@ -1,0 +1,274 @@
+<div class="card">
+  <div class="card-header">Habit:</div>
+  <div class="card-body" *ngIf="form">
+    <form [formGroup]="form">
+      <div class="form-group col-lg-12">
+        <label class="font-size-h6 font-weight-bolder text-dark">Title</label>
+        <input
+          class="
+            form-control form-control-solid
+            h-auto
+            py-4
+            px-4
+            rounded-lg
+            font-size-h6
+          "
+          type="text"
+          name="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="form-group col-lg-12">
+        <label class="font-size-h6 font-weight-bolder text-dark"
+          >Description</label
+        >
+        <textarea
+          class="
+            form-control form-control-solid
+            h-auto
+            py-4
+            px-4
+            rounded-lg
+            font-size-h6
+          "
+          type="text"
+          name="description"
+          formControlName="description"
+        ></textarea>
+      </div>
+
+      <div class="row mt-4">
+        <div class="form-group col-lg-3">
+          <label class="font-size-h6 font-weight-bolder text-dark"
+            >Measurement Unit</label
+          >
+
+          <select class="form-select" aria-label="Default select example">
+            <option value="Servings">Servings</option>
+            <option value="ounces">Ounces</option>
+            <option value="minutes">Minute</option>
+            <option value="hours">Hours</option>
+            <option value="minutes">Completion</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-2">
+          <label class="font-size-h6 font-weight-bolder text-dark"
+            >Minimum</label
+          >
+          <input
+            class="
+              form-control form-control-solid
+              h-auto
+              py-4
+              px-4
+              rounded-lg
+              font-size-h6
+            "
+            type="text"
+            name="minimum"
+            formControlName="minimum"
+          />
+        </div>
+        <div class="form-group col-lg-2">
+          <label class="font-size-h6 font-weight-bolder text-dark"
+            >Maximum</label
+          >
+          <input
+            class="
+              form-control form-control-solid
+              h-auto
+              py-4
+              px-4
+              rounded-lg
+              font-size-h6
+            "
+            type="text"
+            name="maximum"
+            formControlName="maximum"
+          />
+        </div>
+        <div class="col-lg-2 pt-8">
+          <h3>Or</h3>
+        </div>
+
+        <div class="form-group col-lg-3">
+          <label class="font-size-h6 font-weight-bolder text-dark"
+            >Target</label
+          >
+          <input
+            class="
+              form-control form-control-solid
+              h-auto
+              py-4
+              px-4
+              rounded-lg
+              font-size-h6
+            "
+            type="text"
+            name=""
+            formControlName="target"
+          />
+        </div>
+      </div>
+      <h3 class="mt-6">Milestones</h3>
+
+      <ng-container
+        *ngFor="
+          let milestonesFormGroup of milestones['controls'];
+          let i = index
+        "
+      >
+        <div [formGroup]="milestonesFormGroup">
+          <div class="row border border-radius p-4">
+            <div class="col-2">
+              <div class="form-group col-12">
+                <label class="font-size-h6 font-weight-bolder text-dark"
+                  >Days</label
+                >
+
+                <input
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    rounded-lg
+                    font-size-h6
+                  "
+                  type="text"
+                  name="days"
+                  formControlName="days"
+                />
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="form-group col-12">
+                <label class="font-size-h6 font-weight-bolder text-dark"
+                  >Streak icon</label
+                >
+
+                <input
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    rounded-lg
+                    font-size-h6
+                  "
+                  type="text"
+                  name="streak_icon"
+                  formControlName="streak_icon"
+                />
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="form-group col-12">
+                <label class="font-size-h6 font-weight-bolder text-dark"
+                  >Animation</label
+                >
+
+                <input
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    rounded-lg
+                    font-size-h6
+                  "
+                  type="text"
+                  name="animation"
+                  formControlName="animation"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group col-12 pt-8">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Reccomend user to increase goal?
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">
+              <label>
+                <button
+                  (click)="removeMilestoneFormControl(i)"
+                  class="btn btn-outline-danger"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </label>
+            </div>
+            <div class="col-12">
+              <div class="form-group col-12">
+                <label class="font-size-h6 font-weight-bolder text-dark"
+                  >Text</label
+                >
+
+                <textarea
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    rounded-lg
+                    font-size-h6
+                  "
+                  type="text"
+                  name="text"
+                  formControlName="text"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="row mt-2 d-flex justify-content-end">
+        <button
+          (click)="addMilestoneFormControl()"
+          class="btn btn-outline-success"
+        >
+          Add Milestone
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <iframe
+  src="https://giphy.com/embed/3oz8xtBx06mcZWoNJm"
+  width="480"
+  height="362"
+  frameBorder="0"
+  class="giphy-embed"
+  allowFullScreen
+></iframe>
+<p>
+  Still working on this, however an admin will likely need to take the following
+  steps.
+</p>
+<b>Set up a new Habit</b>
+<ol>
+  <li>, or edit a habit option B, or add a new category C</li>
+</ol>
+<b>add a habit option</b>
+<ol>
+  <li>
+    Set up a new Habit A, or edit a habit option B, or add a new category C
+  </li>
+</ol>
+<b>add a habit category</b>
+<ol>
+  <li>
+    Set up a new Habit A, or edit a habit option B, or add a new category C
+  </li>
+</ol>
+
+<h5>Admin questions</h5>
+1. Do habits release/publish? Should we let an admin change any setting after
+it's been out there/able for a user to track/do.
+<h5>Notes</h5>
+1. A user can change their goal slider as often as they want but it will reset
+their streak -->

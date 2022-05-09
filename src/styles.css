@@ -1,0 +1,35 @@
+/* Add application styles & imports to this file! */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~angular-calendar/css/angular-calendar.css';
+.btn-primary {
+  background-color: #c89211;
+  border-color: #b98710;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: #c89211;
+  border-color: #c89211;
+}
+.btn-primary:active:focus {
+  box-shadow: 0 0 0 0.25rem rgb(253 180 253 / 50%);
+}
+
+.btn-outline-primary {
+  border-color: #b98710;
+  color: #b98710;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary:focus {
+  border-color: #c89211;
+  color: #b98710;
+}
+.btn-outline-primary:active:focus {
+  box-shadow: 0 0 0 0.25rem rgb(253 180 253 / 50%);
+}
+.btn-primary:disabled {
+  color: rgb(0, 0, 0);
+  background-color: #dfdfdf;
+  border-color: #eaeaea;
+}

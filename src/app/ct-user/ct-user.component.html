@@ -1,0 +1,245 @@
+<!-- <div class="row d-flex justify-content-end mt-4">
+  <button class="col-1 btn btn-icon btn-success me-4" (click)="addHabit()">
+    +
+  </button>
+</div> -->
+<div class="bg-white mb-4">
+  <div class="row">
+    <h4 class="col-10 py-2">In progress</h4>
+    <button
+      class="col-1 btn btn-icon me-4"
+      (click)="showDetails('in-progress')"
+    >
+      +
+    </button>
+  </div>
+  <div id="in-progress">
+    <ng-container *ngFor="let habit of users_habits">
+      <div class="card mt-2">
+        <div class="row">
+          <div class="col-10">
+            <div
+              class="card-header bg-white"
+              (click)="showHabitDetail(habit.habit._id)"
+            >
+              <div class="d-flex justify-content-between">
+                <p class="mb-0">
+                  {{ habit.habit.title }} - {{ habit.tracking_option_id.title }}
+                </p>
+                <span>{{ habit.habit_days.length }}</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <ng-container [ngSwitch]="habit.tracking_option_id.tracked_as">
+                <!-- There's a time goal times a day example -->
+                <div *ngSwitchCase="ENUMTrackedAs.GOAL">
+                  <div class="row d-flex justify-content-center">
+                    <div class="streak col-9 d-flex justify-content-between">
+                      <div class="streak-day day-circle">18</div>
+                      <div class="streak-day day-circle">19</div>
+                      <div class="streak-day day-circle">20</div>
+                      <div class="streak-day day-circle">21</div>
+                      <div class="streak-day day-circle">22</div>
+                      <div class="streak-day day-circle--success">23</div>
+                      <div class="streak-day day-circle" id="24thfruit">24</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- completion goal. you did it or didnt -->
+                <div *ngSwitchCase="ENUMTrackedAs.COMPLETION">
+                  <!-- Week and text field and complete button -->
+                  <ng-container
+                    *ngIf="
+                      habit.tracking_option_id.goal_units ===
+                        ENUMGoalUnits.TEXT;
+                      else completeSimple
+                    "
+                  >
+                    <div class="row d-flex justify-content-center">
+                      <div class="streak col-9 d-flex justify-content-between">
+                        <div class="streak-day day-circle">18</div>
+                        <div class="streak-day day-circle">19</div>
+                        <div class="streak-day day-circle">20</div>
+                        <div class="streak-day day-circle">21</div>
+                        <div class="streak-day day-circle--success">22</div>
+                        <div class="streak-day day-circle--success">23</div>
+                        <div class="streak-day day-circle" id="24thJournal">
+                          24
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <!-- week and complete button -->
+                  <ng-template #completeSimple>
+                    <div class="row d-flex justify-content-center">
+                      <div class="streak col-9 d-flex justify-content-between">
+                        <div class="streak-day day-circle">18</div>
+                        <div class="streak-day day-circle">19</div>
+                        <div class="streak-day day-circle">20</div>
+                        <div class="streak-day day-circle--success">21</div>
+                        <div class="streak-day day-circle--success">22</div>
+                        <div class="streak-day day-circle--success">23</div>
+                        <div class="streak-day day-circle--success">24</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+
+                <div *ngSwitchDefault>
+                  <div class="row d-flex justify-content-center">
+                    <div class="streak col-9 d-flex justify-content-between">
+                      <div class="streak-day day-circle">18</div>
+                      <div class="streak-day day-circle">19</div>
+                      <div class="streak-day day-circle">20</div>
+                      <div class="streak-day day-circle--success">21</div>
+                      <div class="streak-day day-circle--success">22</div>
+                      <div class="streak-day day-circle--success">23</div>
+                      <div class="streak-day day-circle--success">24</div>
+                    </div>
+                    <div class="row mt-4">
+                      <button class="btn btn-success btn-sm" disabled>
+                        Complete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-2">
+            <button
+              class="btn btn-success h-100 w-100"
+              (click)="completeHabit(habit)"
+            >
+              ✓
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="row bg-light-gray" id="available">
+  <div class="row pt-4">
+    <h4 class="col-10">Available</h4>
+    <button
+      class="col-1 btn btn-icon me-4"
+      (click)="showDetails('available-habits')"
+    >
+      +
+    </button>
+  </div>
+  <div id="available_habits">
+    <ng-container *ngFor="let habit of available_habits">
+      <div class="card mt-4">
+        <pre [innerHTML]="habit | json"></pre>
+
+        <!-- <div
+          class="card-header bg-white"
+          (click)="showHabitDetail(habit.habit._id)"
+        >
+          <div class="d-flex justify-content-between">
+            <p>
+              {{ habit.habit.title }} - {{ habit.tracking_option_id.title }}
+            </p>
+            <span>{{ habit.habit_days.length }}</span>
+          </div>
+        </div> -->
+        <!-- <div class="card-body">
+          <ng-container [ngSwitch]="habit.tracking_option_id.tracked_as"> 
+     
+            <div *ngSwitchCase="ENUMTrackedAs.GOAL">
+              <div class="row d-flex justify-content-center">
+                <div class="streak col-9 d-flex justify-content-between">
+                  <div class="streak-day day-circle">18</div>
+                  <div class="streak-day day-circle">19</div>
+                  <div class="streak-day day-circle">20</div>
+                  <div class="streak-day day-circle">21</div>
+                  <div class="streak-day day-circle">22</div>
+                  <div class="streak-day day-circle--success">23</div>
+                  <div class="streak-day day-circle" id="24thfruit">24</div>
+                </div>
+               
+              </div>
+            </div>
+            <div *ngSwitchCase="ENUMTrackedAs.COMPLETION">
+              <ng-container
+                *ngIf="
+                  habit.tracking_option_id.goal_units === ENUMGoalUnits.TEXT;
+                  else completeSimple
+                "
+              >
+                <div class="row d-flex justify-content-center">
+                  <div class="streak col-9 d-flex justify-content-between">
+                    <div class="streak-day day-circle">18</div>
+                    <div class="streak-day day-circle">19</div>
+                    <div class="streak-day day-circle">20</div>
+                    <div class="streak-day day-circle">21</div>
+                    <div class="streak-day day-circle--success">22</div>
+                    <div class="streak-day day-circle--success">23</div>
+                    <div class="streak-day day-circle" id="24thJournal">24</div>
+                  </div>
+                  <div class="row mt-4" [formGroup]="form">
+                    <textarea
+                      name="sentance"
+                      id=""
+                      cols="30"
+                      rows="3"
+                      formControlName="journal_sentance"
+                    ></textarea>
+
+                    <button
+                      id="24thJournalButton"
+                      class="btn btn-primary btn-sm mt-2"
+                      [disabled]="!form.valid"
+                      (click)="saveJournalSentance($event)"
+                    >
+                      Complete
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #completeSimple>
+                <div class="row d-flex justify-content-center">
+                  <div class="streak col-9 d-flex justify-content-between">
+                    <div class="streak-day day-circle">18</div>
+                    <div class="streak-day day-circle">19</div>
+                    <div class="streak-day day-circle">20</div>
+                    <div class="streak-day day-circle--success">21</div>
+                    <div class="streak-day day-circle--success">22</div>
+                    <div class="streak-day day-circle--success">23</div>
+                    <div class="streak-day day-circle--success">24</div>
+                  </div>
+                  <div class="row mt-4">
+                    <button class="btn btn-success btn-sm" disabled>
+                      Completed
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+
+            <div *ngSwitchDefault>
+              <div class="row d-flex justify-content-center">
+                <div class="streak col-9 d-flex justify-content-between">
+                  <div class="streak-day day-circle">18</div>
+                  <div class="streak-day day-circle">19</div>
+                  <div class="streak-day day-circle">20</div>
+                  <div class="streak-day day-circle--success">21</div>
+                  <div class="streak-day day-circle--success">22</div>
+                  <div class="streak-day day-circle--success">23</div>
+                  <div class="streak-day day-circle--success">24</div>
+                </div>
+                <div class="row mt-4">
+                  <button class="btn btn-success btn-sm" disabled>
+                    Complete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div> -->
+      </div>
+    </ng-container>
+  </div>
+</div>

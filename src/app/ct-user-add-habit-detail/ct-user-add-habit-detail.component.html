@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-1">
+    <button
+      class="btn btn-icon btn-outline-success me-4 d-inline btn-sm"
+      [routerLink]="'/user'"
+    >
+      <-
+    </button>
+  </div>
+
+  <div class="col">
+    <h2>{{ habit.category }} - {{ habit.title }}</h2>
+  </div>
+</div>
+<div class="card mt-2" *ngFor="let option of habit.tracking_options">
+  <div class="card-header d-flex justify-content-between">
+    {{ option.title }}
+    <button class="btn btn-success" (click)="addHabit(option)">add</button>
+  </div>
+  <div class="body">
+    <div class="ms-3 my-2">
+      <ng-container
+        *ngIf="option.goal_units === ENUMGoalUnits.NONE; else unitsMeasured"
+      >
+        Completion
+      </ng-container>
+      <ng-template #unitsMeasured>
+        <b>Reccomended</b> {{ option.goal_reccomended }} {{ option.goal_units }}
+        {{ option.measured_as }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+<!-- <pre [innerHTML]=' | json'></pre> -->

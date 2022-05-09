@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row header-height py-2 bg-black d-flex jusify-content-start">
+    <div class="col-2">
+    <img
+      src="https://media.streetparking.com/media/60ae847ec308445aaa579aa3/60ae847ec308445aaa579aa3.svg"
+      alt=""
+    />
+  </div>
+  </div>
+  <div class="row bg-light">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<hr />
+
+<div class="card">
+  <div class="card-header" (click)="showDetails('jvm')">
+    JvM 2021 details (click to expand)
+  </div>
+  <div class="card-body d-none" id="jvm">
+    <p>
+      I took the following list from last years splash site
+      <a
+        href="https://spmembersonly.com/2021-julian-vs-miranda?goal=0_985a27eb6a-c5f1365fe0-85644347&mc_cid=c5f1365fe0&mc_eid=9b1363cedd"
+        targe="_blank"
+        >Here</a
+      >
+    </p>
+    <b>nutrition</b>
+    <ul>
+      <li>Eat 2+ servings of fruits or vegetables each day</li>
+      <li>Drink 50 oz. each day</li>
+      <li>Skip alcohol</li>
+    </ul>
+    <b>fitness</b>
+    <ul>
+      <li>Complete one SP workout up to 5 days per week</li>
+
+      <li>Complete 20+ minutes of SP Maintenance</li>
+
+      <li>
+        Complete the Julian vs. Miranda Challenge Tester workout twice (once at
+        beginning of challenge and once at the end)
+      </li>
+    </ul>
+    <b>lifestyle</b>
+    <ul>
+      <li>Support your team</li>
+      <li>Walk for 5+ minutes each day</li>
+      <li>Mindfulness journal one sentence each day</li>
+      <li>Community connect tasks (twice during the challenge)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" (click)="showDetails('questions')">
+    Questions (click to minimize)
+  </div>
+  <div class="card-body d-none" id="questions">
+    <ol>
+      <li>
+        How should the habits show to the user, the first they started tracking
+        at top (recomended), or one just added at top?
+      </li>
+
+      <li>Only set up daily goals or allow weekly and even monthly</li>
+      <li>
+        Habit Settings
+        <ul>
+          <li>
+            Slider or just text input, slider requires admin min, max, increment
+          </li>
+        </ul>
+      </li>
+
+     
+    </ol>
+  </div>
+</div>
+<div class="card">
+<div class="card-header" (click)="showDetails('notes')">
+  To note (click to minimize)
+</div>
+<div class="card-body d-none" id="notes">
+  <ol>
+    <li>
+      How should the habits show to the user, the first they started tracking
+      at top (recomended), or one just added at top?
+    </li>
+
+    <li>Only set up daily goals or allow weekly and even monthly</li>
+    <li>
+      Habit Settings
+      <ul>
+        <li>
+          Slider or just text input, slider requires admin min, max, increment
+        </li>
+      </ul>
+    </li>
+
+   
+  </ol>
+</div>
+</div>
+<div class="card">
+  <div class="card-header" (click)="showDetails('left')">Left to do</div>
+  <div class="card-body d-none" id="left">
+    <ol>
+      <li>Nice to have for demo - Add local storage of content</li>
+
+      <li>
+        Admin side of building a habit
+        <ul>
+          <li>Creating Category</li>
+          <li>Creating Habit</li>
+          <li>Creating Tracking Option</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>
+<!-- <pre [innerHTML]=' | json'></pre> -->
+<div class="d-flex justify-content-between mt-4">
+  <button class="btn btn-primary" [routerLink]="'/user'">User view</button>
+
+  <button class="btn btn-secondary" [routerLink]="'/admin'">Admin view</button>
+</div>

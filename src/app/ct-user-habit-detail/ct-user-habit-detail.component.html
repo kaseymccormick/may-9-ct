@@ -1,0 +1,109 @@
+<div class="row mt-4">
+  <div class="row">
+    <div class="col-1">
+      <button
+        class="btn btn-icon btn-outline-success me-4 d-inline btn-sm"
+        [routerLink]="'/user'"
+      >
+        <-
+      </button>
+    </div>
+    <h2 class="col text-center">
+      {{ habit.habit.title }} - {{ habit.tracking_option_id.title | titlecase }}
+    </h2>
+    <div
+      *ngIf="
+        habit.tracking_option_id.tracked_as != ENUMHabitTrackedAs.COMPLETION
+      "
+      class="col-1"
+    >
+      <button
+        class="btn btn-icon btn-outline-success me-4 d-inline btn-sm"
+        (click)="habitSettings()"
+      >
+        <i class="fas fa-cog"></i>
+      </button>
+    </div>
+    <h5
+      *ngIf="
+        habit.tracking_option_id.tracked_as != ENUMHabitTrackedAs.COMPLETION
+      "
+      class="text-center"
+    >
+      {{ habit.tracking_option_id.goal_reccomended }}
+      {{ habit.tracking_option_id.goal_units }}
+      {{ habit.tracking_option_id.measured_as }}
+    </h5>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="col">
+      <p class="mb-0">Reminder</p>
+      <span class="text-success">yes</span>
+    </div>
+    <div class="col text-center">
+      Current Streak
+      <h2>{{ habit.habit_days.length }}</h2>
+    </div>
+    <div class="col">
+      <p class="mb-0 text-end">
+        Highest
+        <br />
+        <span>{{ habit.longest_streak }}</span>
+      </p>
+    </div>
+  </div>
+  <div class="row p-4">
+    <button class="btn btn-success btn-sm" disabled>completed</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <app-calendar
+      [markedDates]="habitDateArray"
+      [partialPossible]="habit.tracking_option_id.goal_reccomended > 1"
+    ></app-calendar>
+  </div>
+</div>
+<div class="row mt-6">
+  <div
+    *ngIf="habit.tracking_option_id.goal_units === ENUMGoalUnits.TEXT"
+    class="col-12"
+  >
+    <!-- <div class="card mt-4">
+      <div class="card-header">1.24.2022 <b>Today</b></div>
+      <div class="card-body">
+        <p>Excited to be at HQ and opportunity to travel</p>
+      </div>
+    </div> -->
+    <div class="card mt-4">
+      <div class="card-header">1.23.2022</div>
+      <div class="card-body">
+        <p>Grateful i've found a job I like doing even in off hours.</p>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-header">1.22.2022</div>
+      <div class="card-body">
+        <p>
+          Took the day slow today, started some seedlings. Good recentering
+          time.
+        </p>
+      </div>
+    </div>
+    <!-- <div class="card mt-4">
+      <div class="card-header">1.21.2022</div>
+      <div class="card-body">
+        <p>
+          Long friday but still fun being on zoom all day getting to know
+          teamates while working.
+        </p>
+      </div>
+    </div> -->
+  </div>
+  <div class="row mt-4">
+    <button class="btn btn-success btn-sm">Load More</button>
+  </div>
+</div>
+<!-- habit.tracking_option_id.goal_reccomended > 1 -->
+<!-- <pre [innerHTML]=' | json'></pre> -->

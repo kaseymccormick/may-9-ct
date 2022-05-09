@@ -1,0 +1,25 @@
+<h1>{{ habit.category }} - {{ tracking_option.title }}</h1>
+<form [formGroup]="form">
+  <label for="customRange3" class="form-label">
+    {{ goal_amount.value }} {{ tracking_option.goal_units }}
+    {{ tracking_option.measured_as }}</label
+  >
+  <input
+    type="range"
+    class="form-range"
+    min="0"
+    max="100"
+    step="1"
+    formControlName="goal_amount"
+    id="customRange3"
+  />
+</form>
+<div class="d-flex justify-content-end mb-4">
+  <button *ngIf="status" class="btn btn-success" (click)="addHabit()">
+    Update Habit
+  </button>
+
+  <button *ngIf="!status" class="btn btn-success" (click)="addHabit()">
+    Add Habit
+  </button>
+</div>
